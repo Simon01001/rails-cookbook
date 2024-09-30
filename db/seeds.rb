@@ -7,6 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Recipe.destroy_all
+
 puts "creating recipes"
 Recipe.create(name: "Spicy Chickpea Tacos", description: "Flavorful tacos filled with spiced chickpeas, avocado, and a zesty lime crema. Perfect for a quick weeknight dinner.", rating: 4.5 )
 Recipe.create(name: "Creamy Mushroom Risotto", description: "A rich and creamy risotto made with arborio rice, fresh mushrooms, and a sprinkle of parmesan. Comfort food at its finest!", rating: 3.8)

@@ -1,0 +1,4 @@
+<%= @category.name %>
+
+<%= link_to "Back to categories", categories_path %>
+<%= link_to "Delete category", category_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
