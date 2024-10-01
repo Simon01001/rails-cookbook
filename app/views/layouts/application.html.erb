@@ -12,6 +12,23 @@
   </head>
 
   <body>
+    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+      <div class="container-fluid">
+        <%= image_tag "https://t3.ftcdn.net/jpg/03/30/47/70/360_F_330477017_3VTSdHYUNJR8mNbPgkaaiDqnhuqJOrfH.jpg", class: "logo" %>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item active">
+              <%= link_to "Home", root_path, class: "links" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "New Category", new_category_path, class: "links" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <%= yield %>
+
   </body>
 </html>
