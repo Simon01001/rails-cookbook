@@ -1,15 +1,29 @@
-<h2><%= @category.name %></h2>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://as1.ftcdn.net/v2/jpg/09/39/40/88/1000_F_939408821_vXww1FNovj4iUna4vtcr1yjkAMyJELN1.jpg);">
+  <div class="container">
+    <h1><%= @category.name %></h1>
+  </div>
+</div>
 
-<% @category.bookmarks.each do |bookmark|%>
-  <p><%= bookmark.recipe.name %> | <%= link_to "Delete recipe", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
-  <h5>Rating<h5>
-  <p><%= bookmark.recipe.rating %></p>
-  <h5>Description</h5>
-  <p><%= bookmark.recipe.description %></p>
-  <h5>Comment</h5>
-  <p><%= bookmark.comment %></p>
-<% end %>
+<div class="categories_container">
+  <h1>Recipes:</h1>
+  <%= link_to "Add a recipe", new_category_bookmark_path(@category), class: "create_button" %>
+</div>
 
-<%= link_to "add a new bookmark", new_category_bookmark_path(@category) %>
-<%= link_to "Back to categories", categories_path %>
-<%= link_to "Delete category", category_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<div class="recipe-container d-flex justify-content-between align-items-center py-3">
+  <% @category.bookmarks.each do |bookmark|%>
+    <div class="card-recipe">
+      <img src="https://domf5oio6qrcr.cloudfront.net/medialibrary/10878/5e9a62cd-37c3-4f12-ac08-4d4e0a71fafa.jpg" />
+      <div class="card-recipe-infos">
+        <div>
+          <h2><%= bookmark.recipe.name %>: </h2>
+          <p><%= bookmark.recipe.description %></p>
+        </div>
+       <h2><%= bookmark.recipe.rating %></h2>
+       <p class="comment">"<%= bookmark.comment %>"</p>
+       <%= link_to "Delete recipe", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete_button" %>
+     </div>
+  </div>
+  <% end %>
+</div>
+
+<%= link_to "Delete category", category_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "create_button"%>

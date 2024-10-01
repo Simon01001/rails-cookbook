@@ -1,0 +1,85 @@
+.card-category {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 60px;
+  width: 350px;
+  height: 200px;
+  flex-direction: column;
+}
+
+.list_items {
+  text-decoration: none;
+  color: white;
+}
+
+.card-recipe {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-left: 50px;
+  margin-right: 50px;
+  justify-content: space-between;
+  position: relative
+}
+
+.card-recipe > img {
+  height: 140px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-recipe h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  float: left;
+
+}
+
+.card-recipe p {
+  font-size: 14px;
+  opacity: .7;
+  margin: 0;
+  margin: 20px;
+  width: 300px;
+}
+
+.recipe_container {
+  margin-left:  50px;
+  margin-right: 50px;
+}
+
+.delete_button {
+  text-decoration: none;
+  color: rgb(196, 5, 5);
+  position:relative;
+  right: 4px;
+  bottom: 2px;
+}
+
+.big_delete_button {
+  float: left;
+  text-align: center;
+  text-decoration: none;
+  color:rgb(24, 22, 22);
+  vertical-align: middle;
+  background-color: rgb(214, 214, 104);
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-left: 40px;
+  float:inline-end
+}
+
+.comment {
+  float: left;
+}
