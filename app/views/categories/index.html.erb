@@ -5,11 +5,16 @@
   </div>
 </div>
 
-<h1>Categories</h1>
-<ul>
-  <% @categories.each do |category| %>
-  <li><%= link_to category.name, category_path(category) %></li>
-  <% end %>
-</ul>
+<div class="categories_container">
+  <h1>List of categories</h1>
+  <%= link_to "Create new category", new_category_path, class: "create_button" %>
+</div>
 
-<%= link_to "Create new category", new_category_path %>
+<div class="card-container d-flex justify-content-between">
+  <% @categories.each do |category| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDPEeRw61ntO8y0F_lKFar5WzS0Tqfiy8GFg&s)">
+      <%= link_to category.name.capitalize, category_path(category), class: "list_items" %>
+      <p><%= category.recipes.length %> recipes</p>
+    </div>
+  <% end %>
+</div>
