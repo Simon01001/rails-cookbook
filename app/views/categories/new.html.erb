@@ -1,8 +1,6 @@
 <h1>Create new Category</h1>
 
 <%= simple_form_for (@category) do |f| %>
-  <%= f.input :name, label: "What category do you want to creat??" %>
-  <%= f.submit "Complete", class: "btn btn-primary" %>
+  <%= f.input :name, label: "What category do you want to create??" %>
+  <%= f.submit "Complete", class: "create_button" %>
 <% end %>
-
-<%= link_to "Back to categories", categories_path %>

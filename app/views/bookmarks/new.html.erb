@@ -3,7 +3,7 @@
 <%= simple_form_for [ @category, @bookmark ] do |f| %>
   <%= f.association :recipe, as: :select, label: "Which recipe do you want to add??" %>
   <%= f.input :comment, placeholder: "Add your comment here" %>
-  <%= f.submit "Complete", class: "btn btn-primary" %>
+  <%= f.submit "Complete", class: "create_button" %>
 <% end %>
 
-<%= link_to "Back to categories", categories_path %>
+<%= link_to "Back to categories", categories_path, class: "create_button" %>
