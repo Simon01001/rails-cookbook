@@ -16,7 +16,7 @@
 <div class="recipe-container d-flex justify-content-between align-items-center py-3">
   <% @category.bookmarks.each do |bookmark|%>
     <div class="card-recipe">
-      <%= cl_image_tag bookmark.recipe.photo.key, height: 300, width: 400, crop: :fill %>
+      <%= image_tag bookmark.recipe.image_url, height: 300, width: 400, crop: :fill %>
       <div class="card-recipe-infos">
         <div class="middle_text">
           <h2><%= bookmark.recipe.name %>: </h2>

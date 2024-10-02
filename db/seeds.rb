@@ -9,29 +9,25 @@
 #   end
 Bookmark.destroy_all
 Recipe.destroy_all
-
-
-puts "creating recipes"
-recipe = Recipe.new(name: "Spicy Chickpea Tacos", description: "Flavorful tacos filled with spiced chickpeas, avocado, and a zesty lime crema. Perfect for a quick weeknight dinner.", rating: 4.5 )
-recipe2 = Recipe.new(name: "Creamy Mushroom Risotto", description: "A rich and creamy risotto made with arborio rice, fresh mushrooms, and a sprinkle of parmesan. Comfort food at its finest!", rating: 3.8)
-recipe3 = Recipe.new(name: "Zucchini Noodle Salad", description: "A refreshing salad featuring spiralized zucchini, cherry tomatoes, and a tangy lemon dressing. Light, healthy, and delicious!", rating: 4.3)
-recipe4 = Recipe.new(name: "Chocolate Avocado Mousse", description: "A decadent, dairy-free chocolate mousse made with ripe avocados and cocoa powder. Indulgence without the guilt!", rating: 4.7)
-puts "recipes created"
-
 require "open-uri"
+require "json"
 
-file = URI.parse("https://img.taste.com.au/jdRtM7Ev/w720-h480-cfill-q80/taste/2019/01/chipotle-chicken-tacos-146425-1.jpg").open
-recipe.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-recipe.save
+categories = ["Pasta", "Seafood", "Chicken", "Breakfast"]
 
-file = URI.parse("https://hips.hearstapps.com/delish/assets/17/35/1504128527-delish-mushroom-risotto.jpg").open
-recipe2.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-recipe2.save
+def recipe_builder(id)
+  url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
+  meals_serialized = URI.parse(url).read
+  meal = JSON.parse(meals_serialized)
 
-file = URI.parse("https://playswellwithbutter.com/wp-content/uploads/2023/08/Shaved-Zucchini-Salad-with-Pistachios-Parmesan-8.jpg").open
-recipe3.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-recipe3.save
+  Recipe.create!(name: meal["meals"][0]["strMeal"], description: meal["meals"][0]["strInstructions"], image_url: meal["meals"][0]["strMealThumb"], rating: 0.0)
+end
 
-file = URI.parse("https://img.taste.com.au/2SwT0nAy/taste/2016/11/dairy-free-avocado-chocolate-mousse-90600-1.jpeg").open
-recipe4.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-recipe4.save
+categories.each do |category|
+  url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=#{category}"
+  meals_serialized = URI.parse(url).read
+  meals = JSON.parse(meals_serialized)
+
+  meals["meals"].each do |meal|
+    recipe_builder(meal["idMeal"])
+  end
+end
