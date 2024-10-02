@@ -12,7 +12,11 @@
 
 <div class="card-container d-flex justify-content-between">
   <% @categories.each do |category| %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDPEeRw61ntO8y0F_lKFar5WzS0Tqfiy8GFg&s)">
+    <% if category.photo.attached? %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path category.photo.key, height: 300, crop: :fill %>')">
+    <% else %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDPEeRw61ntO8y0F_lKFar5WzS0Tqfiy8GFg&s)">
+    <% end %>
       <%= link_to category.name.capitalize, category_path(category), class: "list_items" %>
       <p><%= category.recipes.length %> recipes</p>
     </div>
