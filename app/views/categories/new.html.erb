@@ -2,5 +2,6 @@
 
 <%= simple_form_for (@category) do |f| %>
   <%= f.input :name, label: "What category do you want to create??" %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit "Complete", class: "create_button" %>
 <% end %>

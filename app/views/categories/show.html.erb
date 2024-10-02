@@ -1,5 +1,9 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://as1.ftcdn.net/v2/jpg/09/39/40/88/1000_F_939408821_vXww1FNovj4iUna4vtcr1yjkAMyJELN1.jpg);">
-  <div class="container">
+<% if @category.photo.attached? %>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @category.photo.key, height: 300, crop: :fill %>');">
+  <% else %>
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://as1.ftcdn.net/v2/jpg/09/39/40/88/1000_F_939408821_vXww1FNovj4iUna4vtcr1yjkAMyJELN1.jpg);">
+  <% end %>
+    <div class="container">
     <h1><%= @category.name %></h1>
   </div>
 </div>
@@ -12,7 +16,7 @@
 <div class="recipe-container d-flex justify-content-between align-items-center py-3">
   <% @category.bookmarks.each do |bookmark|%>
     <div class="card-recipe">
-      <img src="https://domf5oio6qrcr.cloudfront.net/medialibrary/10878/5e9a62cd-37c3-4f12-ac08-4d4e0a71fafa.jpg" />
+      <%= cl_image_tag bookmark.recipe.photo.key, height: 300, width: 400, crop: :fill %>
       <div class="card-recipe-infos">
         <div class="middle_text">
           <h2><%= bookmark.recipe.name %>: </h2>
@@ -20,10 +24,10 @@
         </div>
        <h2><%= bookmark.recipe.rating %></h2>
        <p class="comment">"<%= bookmark.comment %>"</p>
-       <%= link_to "Delete recipe", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete_button" %>
+       <%= button_to "Delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?", class: "delete_button" } %>
      </div>
   </div>
   <% end %>
 </div>
 
-<%= link_to "Delete category", category_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "create_button"%>
+<%= button_to "Delete category", category_path(@category), method: :delete, class: "create_button"%>
